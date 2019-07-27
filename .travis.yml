@@ -1,0 +1,22 @@
+sudo: required
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - docker build -t joseluisjb1990/fib-fe-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true joseluisjb1990/fib-fe-test npm test
+
+after_success:
+  - docker build -t joseluisjb1990/fib-fe ./client
+  - docker build -t joseluisjb1990/fib-nginx ./nginx
+  - docker build -t joseluisjb1990/fib-worker ./worker
+  - docker build -t joseluisjb1990/fib-server ./server
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push joseluisjb1990/fib-fe
+  - docker push joseluisjb1990/fib-nginx
+  - docker push joseluisjb1990/fib-worker
+  - docker push joseluisjb1990/fib-server
