@@ -29,8 +29,8 @@
       "containerPort": 80
     }],
     "links": [
-      "client", 
-      "server"
+      "fib-fe", 
+      "fib-server"
     ]
   }]
 }
