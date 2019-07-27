@@ -4,22 +4,26 @@
      "name": "fib-fe",
      "image": "joseluisjb1990/fib-fe:latest",
      "hostname": "client",
-     "essential": false
+     "essential": false,
+     "memory": 128
   }, {
     "name": "fib-worker",
     "image": "joseluisjb1990/fib-worker:latest",
     "hostname": "worker",
-    "essential": false
+    "essential": false,
+    "memory": 128
  }, {
   "name": "fib-server",
   "image": "joseluisjb1990/fib-server:latest",
   "hostname": "api",
-  "essential": false
+  "essential": false,
+  "memory": 128
   }, {
     "name": "fib-nginx",
     "image": "joseluisjb1990/fib-nginx:latest",
     "hostname": "nginx",
     "essential": true,
+    "memory": 128,
     "portMappings": [{
       "hostPort": 80,
       "containerPort": 80
